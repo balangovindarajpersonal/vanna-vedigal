@@ -8,39 +8,55 @@
     body {
       font-family: Arial, sans-serif;
       margin: 0;
-      padding: 20px;
-      background-color: #f4f4f4;
+      padding: 0;
+      background-color: #f9f9f9;
     }
 
-    h1 {
+    header, footer {
+      background-color: #333;
+      color: white;
       text-align: center;
-      color: #333;
+      padding: 10px 0;
+    }
+
+    header h1, footer p {
+      margin: 0;
     }
 
     .container {
+      max-width: 1200px;
+      margin: 20px auto;
+      padding: 10px;
+    }
+
+    .category-title {
+      font-size: 24px;
+      color: #e91e63;
+      margin-top: 30px;
+      text-align: left;
+    }
+
+    .product-grid {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
+      gap: 20px;
     }
 
     .card {
       background-color: white;
       border-radius: 8px;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-      margin: 10px;
       width: 300px;
       text-align: center;
       overflow: hidden;
       transition: transform 0.2s;
     }
 
-    .card:hover {
-      transform: scale(1.05);
-    }
-
-    img {
+    .card img {
       width: 100%;
       height: auto;
+      max-height: 200px;
     }
 
     .card-content {
@@ -53,7 +69,7 @@
     }
 
     .product-info {
-      margin: 8px 0;
+      margin: 10px 0;
       color: #555;
     }
 
@@ -63,66 +79,2090 @@
       font-weight: bold;
     }
 
+    .card:hover {
+      transform: scale(1.05);
+    }
+
     footer {
-      text-align: center;
-      margin-top: 20px;
-      font-size: 14px;
-      color: #777;
+      margin-top: 30px;
     }
   </style>
 </head>
 <body>
 
-  <h1>Crackers Price List - 2024</h1>
+  <header>
+    <h1>Crackers Price List - 2024</h1>
+  </header>
+
   <div class="container" id="cracker-list">
     <!-- The cracker cards will be injected here by JavaScript -->
   </div>
 
   <footer>
-    For orders, contact: Murugan - 9566763284
+    <p>For orders, contact: Murugan - 9566763284</p>
   </footer>
 
   <script>
-    // The cracker data as JSON
-    const crackersData = [
-      {"slNo": 1, "name": "4000 Pack with 15 Multicoloured shots FREE (28 + 1 Item)", "pkt": "1 Box", "price": 4000},
-      {"slNo": 2, "name": "6000 Pack With 15 Multicoloured Shots FREE (38 +1) Item", "pkt": "1 Box", "price": 6000},
-      {"slNo": 3, "name": "10Cm Electric (10 Pcs)", "pkt": "1 Box", "price": 14},
-      {"slNo": 4, "name": "15 Cm Electric (10 Pcs)", "pkt": "1 Box", "price": 30},
-      {"slNo": 5, "name": "30 Cm Electric (5 Pcs)", "pkt": "1 Box", "price": 30},
-      {"slNo": 6, "name": "10 Cm Colour (10 Pcs)", "pkt": "1 Box", "price": 16},
-      {"slNo": 7, "name": "15 Cm Colour (10 Pcs)", "pkt": "1 Box", "price": 32},
-      {"slNo": 8, "name": "30 Cm Colour (5 Pcs)", "pkt": "1 Box", "price": 34},
-      {"slNo": 9, "name": "10 Cm Green (10 Pcs)", "pkt": "1 Box", "price": 20},
-      {"slNo": 10, "name": "15 Cm Green (10 Pcs)", "pkt": "1 Box", "price": 37},
-      {"slNo": 11, "name": "30 Cm Green (5 Pcs)", "pkt": "1 Box", "price": 37},
-      {"slNo": 12, "name": "10 Cm Red Sparkers (10 Pcs)", "pkt": "1 Box", "price": 22},
-      {"slNo": 13, "name": "30 Cm Red Sparklers (5 Pcs)", "pkt": "1 Box", "price": 40},
-      {"slNo": 14, "name": "Smoky Stick (2 Pcs)", "pkt": "1 Box", "price": 22},
-      {"slNo": 15, "name": "10Cm Mingle Mix", "pkt": "1 Box", "price": 42},
-      {"slNo": 16, "name": "Crackling Lollipop (5 Pcs)", "pkt": "1 Box", "price": 215}
-    ];
+    // Your JSON data with cracker items
+    const crackersData = {
+  "SPECIAL FAMILY PACKS": [
+    {
+      "Sl.No": 1,
+      "Product Name": "4000 Pack with 15 Multicoloured shots FREE (28 + 1 Item)",
+      "Pkt": "1 Box",
+      "NET Rate": 4000,
+      "Quantity": "",
+      "Amount": ""
+    },
+    {
+      "Sl.No": 2,
+      "Product Name": "6000 Pack With 15 Multicoloured Shots FREE (38 +1) Item",
+      "Pkt": "1 Box",
+      "NET Rate": 6000,
+      "Quantity": "",
+      "Amount": ""
+    }
+  ],
+  "SPARKLERS": [
+    {
+      "Sl.No": 3,
+      "Product Name": "10Cm Electric (10 Pcs)",
+      "Pkt": "1 Box",
+      "NET Rate": 14,
+      "Quantity": "",
+      "Amount": ""
+    },
+    {
+      "Sl.No": 4,
+      "Product Name": "15 Cm Electric (10 Pcs)",
+      "Pkt": "1 Box",
+      "NET Rate": 30,
+      "Quantity": "",
+      "Amount": ""
+    },
+    {
+      "Sl.No": 5,
+      "Product Name": "30 Cm Electric (5 Pcs)",
+      "Pkt": "1 Box",
+      "NET Rate": 30,
+      "Quantity": "",
+      "Amount": ""
+    },
+    {
+      "Sl.No": 6,
+      "Product Name": "10 Cm Colour (10 Pcs)",
+      "Pkt": "1 Box",
+      "NET Rate": 16,
+      "Quantity": "",
+      "Amount": ""
+    },
+    {
+      "Sl.No": 7,
+      "Product Name": "15 Cm Colour (10 Pcs)",
+      "Pkt": "1 Box",
+      "NET Rate": 32,
+      "Quantity": "",
+      "Amount": ""
+    },
+    {
+      "Sl.No": 8,
+      "Product Name": "30 Cm Colour (5 Pcs)",
+      "Pkt": "1 Box",
+      "NET Rate": 34,
+      "Quantity": "",
+      "Amount": ""
+    },
+    {
+      "Sl.No": 9,
+      "Product Name": "10 Cm Green (10 Pcs)",
+      "Pkt": "1 Box",
+      "NET Rate": 20,
+      "Quantity": "",
+      "Amount": ""
+    },
+    {
+      "Sl.No": 10,
+      "Product Name": "15 Cm Green (10 Pcs)",
+      "Pkt": "1 Box",
+      "NET Rate": 37,
+      "Quantity": "",
+      "Amount": ""
+    },
+    {
+      "Sl.No": 11,
+      "Product Name": "30 Cm Green (5 Pcs)",
+      "Pkt": "1 Box",
+      "NET Rate": 37,
+      "Quantity": "",
+      "Amount": ""
+    },
+    {
+      "Sl.No": 12,
+      "Product Name": "10 Cm Red Sparkers (10 Pcs)",
+      "Pkt": "1 Box",
+      "NET Rate": 22,
+      "Quantity": "",
+      "Amount": ""
+    },
+    {
+      "Sl.No": 13,
+      "Product Name": "30 Cm Red Sparklers (5 Pcs)",
+      "Pkt": "1 Box",
+      "NET Rate": 40,
+      "Quantity": "",
+      "Amount": ""
+    }
+  ],
+  "SPECIAL SPARKLERS & MATCHES": [
+    {
+      "Sl.No": 14,
+      "Product Name": "Smoky Stick (2 Pcs)",
+      "Pkt": "1 Box",
+      "NET Rate": 22,
+      "Quantity": "",
+      "Amount": ""
+    },
+    {
+      "Sl.No": 15,
+      "Product Name": "10Cm Mingle Mix",
+      "Pkt": "1 Box",
+      "NET Rate": 42,
+      "Quantity": "",
+      "Amount": ""
+    },
+    {
+      "Sl.No": 16,
+      "Product Name": "Crackling Lollipop (5 Pcs)",
+      "Pkt": "1 Box",
+      "NET Rate": 215,
+      "Quantity": "",
+      "Amount": ""
+    },
+    {
+      "Sl.No": 17,
+      "Product Name": "Rotating Sparklers 1 Pcs",
+      "Pkt": "1 Box",
+      "NET Rate": 215,
+      "Quantity": "",
+      "Amount": ""
+    },
+    {
+      "Sl.No": 18,
+      "Product Name": "10cm 50-50 Sparklers (10 Pcs)",
+      "Pkt": "1 Box",
+      "NET Rate": 22,
+      "Quantity": "",
+      "Amount": ""
+    },
+    {
+      "Sl.No": 19,
+      "Product Name": "10cm Silver Drops (10 Pcs)",
+      "Pkt": "1 Box",
+      "NET Rate": 32,
+      "Quantity": "",
+      "Amount": ""
+    },
+    {
+      "Sl.No": 20,
+      "Product Name": "10cm Star Drops (10 Pcs)",
+      "Pkt": "1 Box",
+      "NET Rate": 32,
+      "Quantity": "",
+      "Amount": ""
+    },
+    {
+      "Sl.No": 21,
+      "Product Name": "50cm Multi Mix Sparklers (5 Pcs)",
+      "Pkt": "1 Box",
+      "NET Rate": 215,
+      "Quantity": "",
+      "Amount": ""
+    }
+  ],
+  "FLOWER POTS": [
+    {
+      "Sl.No": 22,
+      "Product Name": "F.P Small (10 Pcs)",
+      "Pkt": "1 Box",
+      "NET Rate": 65,
+      "Quantity": "",
+      "Amount": ""
+    },
+    {
+      "Sl.No": 23,
+      "Product Name": "F.P Big (10 Pcs)",
+      "Pkt": "1 Box",
+      "NET Rate": 80,
+      "Quantity": "",
+      "Amount": ""
+    },
+    {
+      "Sl.No": 24,
+      "Product Name": "F.P Spcl (10 Pcs)",
+      "Pkt": "1 Box",
+      "NET Rate": 100,
+      "Quantity": "",
+      "Amount": ""
+    },
+    {
+      "Sl.No": 25,
+      "Product Name": "F.P Ashoka (10 Pcs)",
+      "Pkt": "1 Box",
+      "NET Rate": 125,
+      "Quantity": "",
+      "Amount": ""
+    },
+    {
+      "Sl.No": 26,
+      "Product Name": "F.P Lucky (5 Pcs) (R&G)",
+      "Pkt": "1 Box",
+      "NET Rate": 130,
+      "Quantity": "",
+      "Amount": ""
+    },
+    {
+      "Sl.No": 27,
+      "Product Name": "Colour Koti Dlx (5 Pcs)",
+      "Pkt": "1 Box",
+      "NET Rate": 175,
+      "Quantity": "",
+      "Amount": ""
+    },
+    {
+      "Sl.No": 28,
+      "Product Name": "F.P Colour Koti (10 Pcs)",
+      "Pkt": "1 Box",
+      "NET Rate": 190,
+      "Quantity": "",
+      "Amount": ""
+    },
+    {
+      "Sl.No": 29,
+      "Product Name": "F.P Colour Koti XL (10 Pcs)",
+      "Pkt": "1 Box",
+      "NET Rate": 200,
+      "Quantity": "",
+      "Amount": ""
+    },
+    {
+      "Sl.No": 30,
+      "Product Name": "F.P Giant INF (10 Pcs)",
+      "Pkt": "1 Box",
+      "NET Rate": 215,
+      "Quantity": "",
+      "Amount": ""
+    },
+    {
+      "Sl.No": 31,
+      "Product Name": "Colour Koti Dlx (10 Pcs)",
+      "Pkt": "1 Box",
+      "NET Rate": 310,
+      "Quantity": "",
+      "Amount": ""
+    }
+  ],
+  "MULTI COLOUR FLOWER POTS": [
+    {
+      "Sl.No": 32,
+      "Product Name": "Tricolour Fountain (5 Pcs)",
+      "Pkt": "1 Box",
+      "NET Rate": 215,
+      "Quantity": "",
+      "Amount": ""
+    },
+    {
+      "Sl.No": 33,
+      "Product Name": "Colour Cone (2 Pcs)",
+      "Pkt": "1 Box",
+      "NET Rate": 265,
+      "Quantity": "",
+      "Amount": ""
+    },
+    {
+      "Sl.No": 34,
+      "Product Name": "Tricolour Fountain Elite (5 Pcs)",
+      "Pkt": "1 Box",
+      "NET Rate": 245,
+      "Quantity": "",
+      "Amount": ""
+    },
+    {
+      "Sl.No": 35,
+      "Product Name": "Multi Colour Giant (10 Pcs)",
+      "Pkt": "1 Box",
+      "NET Rate": 375,
+      "Quantity": "",
+      "Amount": ""
+    },
+    {
+      "Sl.No": 36,
+      "Product Name": "Sparkling Koti ( 1 Box) 10 Pcs",
+      "Pkt": "1 Box",
+      "NET Rate": 375,
+      "Quantity": "",
+      "Amount": ""
+    },
+    {
+      "Sl.No": 37,
+      "Product Name": "Gold Mines / Silver Mines (10 Pcs)",
+      "Pkt": "1 Box",
+      "NET Rate": 850,
+      "Quantity": "",
+      "Amount": ""
+    }
+  ],
+  "GROUND CHAKKARS": [
+    {
+      "Sl.No": 38,
+      "Product Name": "G.C Big (10 Pcs)",
+      "Pkt": "1 Box",
+      "NET Rate": 45,
+      "Quantity": "",
+      "Amount": ""
+    },
+    {
+      "Sl.No": 39,
+      "Product Name": "G.C Big (25 Pcs)",
+      "Pkt": "1 Box",
+      "NET Rate": 95,
+      "Quantity": "",
+      "Amount": ""
+    },
+    {
+      "Sl.No": 40,
+      "Product Name": "Chakkar Magic Special (10 Pcs)",
+      "Pkt": "1 Box",
+      "NET Rate": 95,
+      "Quantity": "",
+      "Amount": ""
+    },
+    {
+      "Sl.No": 41,
+      "Product Name": "Chakkar Nano Dlx (10 Pcs)",
+      "Pkt": "1 Box",
+      "NET Rate": 140,
+      "Quantity": "",
+      "Amount": ""
+    }
+  ],
+  "FANCY GROUND SPINNERS": [
+    {
+      "Sl.No": 42,
+      "Product Name": "Fire Ball (3 Pcs) Vanitha",
+      "Pkt": "1 Box",
+      "NET Rate": 80,
+      "Quantity": "",
+      "Amount": ""
+    },
+    {
+      "Sl.No": 43,
+      "Product Name": "Whistling Chakkar (5 Pcs)",
+      "Pkt": "1 Box",
+      "NET Rate": 135,
+      "Quantity": "",
+      "Amount": ""
+    },
+    {
+      "Sl.No": 44,
+      "Product Name": "Sun Flower Wheel (5 Pcs)",
+      "Pkt": "1 Box",
+      "NET Rate": 110,
+      "Quantity": "",
+      "Amount": ""
+    },
+    {
+      "Sl.No": 45,
+      "Product Name": "Sunny Star Wheel (5 Pcs)",
+      "Pkt": "1 Box",
+      "NET Rate": 170,
+      "Quantity": "",
+      "Amount": ""
+    },
+    {
+      "Sl.No": 46,
+      "Product Name": "Jolly Wheel ( 1 Box) 10 Pcs",
+      "Pkt": "1 Box",
+      "NET Rate": 130,
+      "Quantity": "",
+      "Amount": ""
+    },
+    {
+      "Sl.No": 47,
+      "Product Name": "Honey Bee Wheel (5 Pcs)",
+      "Pkt": "1 Box",
+      "NET Rate": 100,
+      "Quantity": "",
+      "Amount": ""
+    },
+    {
+      "Sl.No": 48,
+      "Product Name": "Twister (5 Pcs) Vanitha",
+      "Pkt": "1 Box",
+      "NET Rate": 175,
+      "Quantity": "",
+      "Amount": ""
+    },
+    {
+      "Sl.No": 49,
+      "Product Name": "Spectra (4 Pcs) Vanitha",
+      "Pkt": "1 Box",
+      "NET Rate": 150,
+      "Quantity": "",
+      "Amount": ""
+    },
+    {
+      "Sl.No": 50,
+      "Product Name": "Fun Run (6 Pcs) Vanitha",
+      "Pkt": "1 Box",
+      "NET Rate": 150,
+      "Quantity": "",
+      "Amount": ""
+    },
+    {
+      "Sl.No": 51,
+      "Product Name": "I Spin (5 Pcs) Vanitha",
+      "Pkt": "1 Box",
+      "NET Rate": 185,
+      "Quantity": "",
+      "Amount": ""
+    },
+    {
+      "Sl.No": 52,
+      "Product Name": "Wire Chakkar (10 Pcs)",
+      "Pkt": "1 Box",
+      "NET Rate": 190,
+      "Quantity": "",
+      "Amount": ""
+    },
+    {
+      "Sl.No": 53,
+      "Product Name": "Hot Wheels (5 Pcs)",
+      "Pkt": "1 Box",
+      "NET Rate": 190,
+      "Quantity": "",
+      "Amount": ""
+    },
+    {
+      "Sl.No": 54,
+      "Product Name": "Colour Changing Butterfly (10 Pcs) Vanitha",
+      "Pkt": "1 Box",
+      "NET Rate": 185,
+      "Quantity": "",
+      "Amount": ""
+    },
+    {
+      "Sl.No": 55,
+      "Product Name": "Fast Track Wheel (5 Pcs)",
+      "Pkt": "1 Box",
+      "NET Rate": 190,
+      "Quantity": "",
+      "Amount": ""
+    },
+    {
+      "Sl.No": 56,
+      "Product Name": "Flora Wheel (4 Pcs)",
+      "Pkt": "1 Box",
+      "NET Rate": 235,
+      "Quantity": "",
+      "Amount": ""
+    },
+    {
+      "Sl.No": 57,
+      "Product Name": "Kranthi Wheeel",
+      "Pkt": "1 Box",
+      "NET Rate": 265,
+      "Quantity": "",
+      "Amount": ""
+    },
+    {
+      "Sl.No": 58,
+      "Product Name": "Jasmine Garden",
+      "Pkt": "1 Box",
+      "NET Rate": 265,
+      "Quantity": "",
+      "Amount": ""
+    },
+    {
+      "Sl.No": 59,
+      "Product Name": "Giant Wheel (3 Pcs)",
+      "Pkt": "1 Box",
+      "NET Rate": 325,
+      "Quantity": "",
+      "Amount": ""
+    },
+    {
+      "Sl.No": 60,
+      "Product Name": "Disco Wheel Vadivel (5 Pcs)",
+      "Pkt": "1 Box",
+      "NET Rate": 100,
+      "Quantity": "",
+      "Amount": ""
+    },
+    {
+      "Sl.No": 61,
+      "Product Name": "Avengers Wheel Vadivel (5pcs)",
+      "Pkt": "1 Box",
+      "NET Rate": 130,
+      "Quantity": "",
+      "Amount": ""
+    },
+    {
+      "Sl.No": 62,
+      "Product Name": "Ring Ring (5 Pcs)",
+      "Pkt": "1 Box",
+      "NET Rate": 150,
+      "Quantity": "",
+      "Amount": ""
+    }
+  ],
+  "VANITHA CHAKKARS": [
+    {
+      "Sl.No": 63,
+      "Product Name": "Spinner Special (10 Pcs) Vanitha",
+      "Pkt": "1 Box",
+      "NET Rate": 225,
+      "Quantity": "",
+      "Amount": ""
+    },
+    {
+      "Sl.No": 64,
+      "Product Name": "Spinner Deluxe (5 Pcs) Vanitha",
+      "Pkt": "1 Box",
+      "NET Rate": 190,
+      "Quantity": "",
+      "Amount": ""
+    },
+    {
+      "Sl.No": 65,
+      "Product Name": "Spinner Deluxe (10 Pcs) Vanitha",
+      "Pkt": "1 Box",
+      "NET Rate": 275,
+      "Quantity": "",
+      "Amount": ""
+    },
+    {
+      "Sl.No": 66,
+      "Product Name": "Spinner Mix (8 Pcs) Vanitha",
+      "Pkt": "1 Box",
+      "NET Rate": 215,
+      "Quantity": "",
+      "Amount": ""
+    },
+    {
+      "Sl.No": 67,
+      "Product Name": "Colour Spinner Combo (5 Pcs) Vanitha",
+      "Pkt": "1 Box",
+      "NET Rate": 225,
+      "Quantity": "",
+      "Amount": ""
+    }
+  ],
+  "FANCY CANDLES AND TOURCHES": [
+    {
+      "Sl.No": 68,
+      "Product Name": "Navrag Pencil (5 Pcs)",
+      "Pkt": "1 Box",
+      "NET Rate": 110,
+      "Quantity": "",
+      "Amount": ""
+    },
+    {
+      "Sl.No": 69,
+      "Product Name": "Selfie Stick (5 Pcs)",
+      "Pkt": "1 Box",
+      "NET Rate": 110,
+      "Quantity": "",
+      "Amount": ""
+    },
+    {
+      "Sl.No": 70,
+      "Product Name": "50 Sec Laser Show (5 Pcs)",
+      "Pkt": "1 Box",
+      "NET Rate": 150,
+      "Quantity": "",
+      "Amount": ""
+    },
+    {
+      "Sl.No": 71,
+      "Product Name": "Smoke (3 Pcs)",
+      "Pkt": "1 Box",
+      "NET Rate": 170,
+      "Quantity": "",
+      "Amount": ""
+    },
+    {
+      "Sl.No": 72,
+      "Product Name": "Smoke Cigar (3 Pcs)",
+      "Pkt": "1 Box",
+      "NET Rate": 185,
+      "Quantity": "",
+      "Amount": ""
+    },
+    {
+      "Sl.No": 73,
+      "Product Name": "Smoke Gun (5 Pcs)",
+      "Pkt": "1 Box",
+      "NET Rate": 190,
+      "Quantity": "",
+      "Amount": ""
+    },
+    {
+      "Sl.No": 74,
+      "Product Name": "Crackling Bat & Colour Smoke Ball ( 1 Pack)",
+      "Pkt": "1 Box",
+      "NET Rate": 215,
+      "Quantity": "",
+      "Amount": ""
+    },
+    {
+      "Sl.No": 75,
+      "Product Name": "@night (3 Pcs) Vanitha",
+      "Pkt": "1 Box",
+      "NET Rate": 215,
+      "Quantity": "",
+      "Amount": ""
+    },
+    {
+      "Sl.No": 76,
+      "Product Name": "Top Gun (5 Pcs) Vanitha",
+      "Pkt": "1 Box",
+      "NET Rate": 400,
+      "Quantity": "",
+      "Amount": ""
+    },
+    {
+      "Sl.No": 77,
+      "Product Name": "Popcorn Pencil (5 Pcs)",
+      "Pkt": "1 Box",
+      "NET Rate": 150,
+      "Quantity": "",
+      "Amount": ""
+    },
+    {
+      "Sl.No": 78,
+      "Product Name": "Sivakasi Special Crackling (2 Pcs)",
+      "Pkt": "1 Box",
+      "NET Rate": 160,
+      "Quantity": "",
+      "Amount": ""
+    }
+  ],
+  "TWINKLING STAR": [
+    {
+      "Sl.No": 79,
+      "Product Name": "4” Ts (10 Pcs)",
+      "Pkt": "1 Box",
+      "NET Rate": 55,
+      "Quantity": "",
+      "Amount": ""
+    },
+    {
+      "Sl.No": 80,
+      "Product Name": "Panda Ts (10 Pcs)",
+      "Pkt": "1 Box",
+      "NET Rate": 55,
+      "Quantity": "",
+      "Amount": ""
+    },
+    {
+      "Sl.No": 81,
+      "Product Name": "Rim Zimm \\ Jil Jil Ts (1 Pack) 10 Pcs",
+      "Pkt": "1 Box",
+      "NET Rate": 55,
+      "Quantity": "",
+      "Amount": ""
+    },
+    {
+      "Sl.No": 82,
+      "Product Name": "Iron Man (6 Pcs)",
+      "Pkt": "1 Box",
+      "NET Rate": 160,
+      "Quantity": "",
+      "Amount": ""
+    }
+  ],
+  "ROCKETS": [
+    {
+      "Sl.No": 83,
+      "Product Name": "Shane Punjab Rocket (10 Pcs)",
+      "Pkt": "1 Box",
+      "NET Rate": 130,
+      "Quantity": "",
+      "Amount": ""
+    },
+    {
+      "Sl.No": 84,
+      "Product Name": "Lunik Express (10 Pcs)",
+      "Pkt": "1 Box",
+      "NET Rate": 160,
+      "Quantity": "",
+      "Amount": ""
+    },
+    {
+      "Sl.No": 85,
+      "Product Name": "2 Sound Rocket (10 Pcs)",
+      "Pkt": "1 Box",
+      "NET Rate": 170,
+      "Quantity": "",
+      "Amount": ""
+    },
+    {
+      "Sl.No": 86,
+      "Product Name": "Shatabi Colour Rocket (10 Pcs)",
+      "Pkt": "1 Box",
+      "NET Rate": 215,
+      "Quantity": "",
+      "Amount": ""
+    },
+    {
+      "Sl.No": 87,
+      "Product Name": "Crackling Lunik (10 Pcs)",
+      "Pkt": "1 Box",
+      "NET Rate": 235,
+      "Quantity": "",
+      "Amount": ""
+    },
+    {
+      "Sl.No": 88,
+      "Product Name": "3 Sound Rockets (10 Pcs)",
+      "Pkt": "1 Box",
+      "NET Rate": 190,
+      "Quantity": "",
+      "Amount": ""
+    }
+  ],
+  "FANCY ROCKETS": [
+    {
+      "Sl.No": 89,
+      "Product Name": "Whisling Rocket (10 Pcs)",
+      "Pkt": "1 Box",
+      "NET Rate": 190,
+      "Quantity": "",
+      "Amount": ""
+    },
+    {
+      "Sl.No": 90,
+      "Product Name": "Rocket With Fancy Shot 6 Pcs",
+      "Pkt": "1 Box",
+      "NET Rate": 400,
+      "Quantity": "",
+      "Amount": ""
+    },
+    {
+      "Sl.No": 91,
+      "Product Name": "Radiant With wings / Mars Marathon (10 Pcs)",
+      "Pkt": "1 Box",
+      "NET Rate": 265,
+      "Quantity": "",
+      "Amount": ""
+    }
+  ],
+  "SINGLE SOUND": [
+    {
+      "Sl.No": 92,
+      "Product Name": "Kuruvi (25 Pkts) 1 Bundle",
+      "Pkt": "1 Box",
+      "NET Rate": 190,
+      "Quantity": "",
+      "Amount": ""
+    },
+    {
+      "Sl.No": 93,
+      "Product Name": "3.5\" Lakshmi (15 Pkts) 1 Bundle",
+      "Pkt": "1 Box",
+      "NET Rate": 160,
+      "Quantity": "",
+      "Amount": ""
+    },
+    {
+      "Sl.No": 94,
+      "Product Name": "4\" Lakshmi (10 Pkts) 1 Bundle",
+      "Pkt": "1 Box",
+      "NET Rate": 190,
+      "Quantity": "",
+      "Amount": ""
+    },
+    {
+      "Sl.No": 95,
+      "Product Name": "4\" Dlx Lakshmi (10 Pkts) 1 Bundle",
+      "Pkt": "1 Box",
+      "NET Rate": 225,
+      "Quantity": "",
+      "Amount": ""
+    },
+    {
+      "Sl.No": 96,
+      "Product Name": "4\" Gold Lakshmi (10 Pkts) 1 Bundle",
+      "Pkt": "1 Box",
+      "NET Rate": 245,
+      "Quantity": "",
+      "Amount": ""
+    },
+    {
+      "Sl.No": 97,
+      "Product Name": "4\" Spcl Lakshmi (10 Pkts) 1 Bundle",
+      "Pkt": "1 Box",
+      "NET Rate": 265,
+      "Quantity": "",
+      "Amount": ""
+    }
+  ],
+  "BIJILI": [
+    {
+      "Sl.No": 98,
+      "Product Name": "Bijili (100 Pcs) 1 Pkt",
+      "Pkt": "1 Box",
+      "NET Rate": 35,
+      "Quantity": "",
+      "Amount": ""
+    },
+    {
+      "Sl.No": 99,
+      "Product Name": "Pom Pom (30 Pcs)",
+      "Pkt": "1 Box",
+      "NET Rate": 170,
+      "Quantity": "",
+      "Amount": ""
+    }
+  ],
+  "MUSICAL WALA & MUSICAL SERIES": [
+    {
+      "Sl.No": 101,
+      "Product Name": "Musical Crackers 1 Pcs",
+      "Pkt": "1 Box",
+      "NET Rate": 130,
+      "Quantity": "",
+      "Amount": ""
+    },
+    {
+      "Sl.No": 102,
+      "Product Name": "Saxony (2 Pcs)",
+      "Pkt": "1 Box",
+      "NET Rate": 80,
+      "Quantity": "",
+      "Amount": ""
+    },
+    {
+      "Sl.No": 103,
+      "Product Name": "Fire Egg (2 Pcs)",
+      "Pkt": "1 Box",
+      "NET Rate": 150,
+      "Quantity": "",
+      "Amount": ""
+    },
+    {
+      "Sl.No": 104,
+      "Product Name": "Aero Bus (6 Pcs)",
+      "Pkt": "1 Box",
+      "NET Rate": 185,
+      "Quantity": "",
+      "Amount": ""
+    },
+    {
+      "Sl.No": 105,
+      "Product Name": "Super Hooters (10 Pcs) Whistling",
+      "Pkt": "1 Box",
+      "NET Rate": 215,
+      "Quantity": "",
+      "Amount": ""
+    },
+    {
+      "Sl.No": 106,
+      "Product Name": "Musical Pencil (4 Pcs)",
+      "Pkt": "1 Box",
+      "NET Rate": 215,
+      "Quantity": "",
+      "Amount": ""
+    },
+    {
+      "Sl.No": 107,
+      "Product Name": "Whistling Multicoloured Fountain (1 Pcs)",
+      "Pkt": "1 Box",
+      "NET Rate": 160,
+      "Quantity": "",
+      "Amount": ""
+    }
+  ],
+  "BOMBS": [
+    {
+      "Sl.No": 108,
+      "Product Name": "Classic Green (10 Pcs)",
+      "Pkt": "1 Box",
+      "NET Rate": 100,
+      "Quantity": "",
+      "Amount": ""
+    },
+    {
+      "Sl.No": 109,
+      "Product Name": "Bullet Bomb (10 Pcs)",
+      "Pkt": "1 Box",
+      "NET Rate": 50,
+      "Quantity": "",
+      "Amount": ""
+    },
+    {
+      "Sl.No": 110,
+      "Product Name": "AK 47 (5 Pcs)",
+      "Pkt": "1 Box",
+      "NET Rate": 90,
+      "Quantity": "",
+      "Amount": ""
+    },
+    {
+      "Sl.No": 111,
+      "Product Name": "Classic Foils (10 Pcs)",
+      "Pkt": "1 Box",
+      "NET Rate": 130,
+      "Quantity": "",
+      "Amount": ""
+    },
+    {
+      "Sl.No": 112,
+      "Product Name": "999 Dolak Bomb (10 Pcs)",
+      "Pkt": "1 Box",
+      "NET Rate": 185,
+      "Quantity": "",
+      "Amount": ""
+    },
+    {
+      "Sl.No": 113,
+      "Product Name": "Agni / Animal Bomb (10 Pcs)",
+      "Pkt": "1 Box",
+      "NET Rate": 190,
+      "Quantity": "",
+      "Amount": ""
+    }
+  ],
+  "PAPER BOMB": [
+    {
+      "Sl.No": 114,
+      "Product Name": "1\\ 4 Kg Paper (1 Pcs)",
+      "Pkt": "1 Box",
+      "NET Rate": 45,
+      "Quantity": "",
+      "Amount": ""
+    },
+    {
+      "Sl.No": 115,
+      "Product Name": "1\\ 2 Kg Paper (1 Pcs)",
+      "Pkt": "1 Box",
+      "NET Rate": 85,
+      "Quantity": "",
+      "Amount": ""
+    },
+    {
+      "Sl.No": 116,
+      "Product Name": "1 Kg Paper (1 Pcs)",
+      "Pkt": "1 Box",
+      "NET Rate": 170,
+      "Quantity": "",
+      "Amount": ""
+    },
+    {
+      "Sl.No": 117,
+      "Product Name": "Colour Paper Bomb (1 Pcs)",
+      "Pkt": "1 Box",
+      "NET Rate": 50,
+      "Quantity": "",
+      "Amount": ""
+    },
+    {
+      "Sl.No": 118,
+      "Product Name": "Spider Paper Bomb (5 Pcs) 1 Box",
+      "Pkt": "1 Box",
+      "NET Rate": 160,
+      "Quantity": "",
+      "Amount": ""
+    },
+    {
+      "Sl.No": 119,
+      "Product Name": "Money In The Bank",
+      "Pkt": "1 Box",
+      "NET Rate": 50,
+      "Quantity": "",
+      "Amount": ""
+    }
+  ],
+  "DIGITAL LAR": [
+    {
+      "Sl.No": 120,
+      "Product Name": "Jegajal (1 Pcs)",
+      "Pkt": "1 Box",
+      "NET Rate": 30,
+      "Quantity": "",
+      "Amount": ""
+    },
+    {
+      "Sl.No": 121,
+      "Product Name": "Candy Crush",
+      "Pkt": "1 Box",
+      "NET Rate": 115,
+      "Quantity": "",
+      "Amount": ""
+    },
+    {
+      "Sl.No": 122,
+      "Product Name": "100 Watts (3 Pcs)",
+      "Pkt": "1 Box",
+      "NET Rate": 115,
+      "Quantity": "",
+      "Amount": ""
+    },
+    {
+      "Sl.No": 123,
+      "Product Name": "Smoke Magic Wala  1 Pcs",
+      "Pkt": "1 Box",
+      "NET Rate": 165,
+      "Quantity": "",
+      "Amount": ""
+    },
+    {
+      "Sl.No": 124,
+      "Product Name": "Gelly Crush (5 Pcs)",
+      "Pkt": "1 Box",
+      "NET Rate": 165,
+      "Quantity": "",
+      "Amount": ""
+    },
+    {
+      "Sl.No": 125,
+      "Product Name": "Smoke Digital Sound  1 Pcs",
+      "Pkt": "1 Box",
+      "NET Rate": 375,
+      "Quantity": "",
+      "Amount": ""
+    }
+  ],
+  "PEACOCK SERIES": [
+    {
+      "Sl.No": 126,
+      "Product Name": "Bada Peacock  1 Pcs",
+      "Pkt": "1 Box",
+      "NET Rate": 410,
+      "Quantity": "",
+      "Amount": ""
+    }
+  ],
+  "TIN FOUNTAINS": [
+    {
+      "Sl.No": 127,
+      "Product Name": "Tin Fountain (1 Pcs)",
+      "Pkt": "1 Box",
+      "NET Rate": 90,
+      "Quantity": "",
+      "Amount": ""
+    },
+    {
+      "Sl.No": 128,
+      "Product Name": "6\" Popcorn (1 Pcs)",
+      "Pkt": "1 Box",
+      "NET Rate": 135,
+      "Quantity": "",
+      "Amount": ""
+    },
+    {
+      "Sl.No": 129,
+      "Product Name": "6\" Watergame (1 Pcs)",
+      "Pkt": "1 Box",
+      "NET Rate": 135,
+      "Quantity": "",
+      "Amount": ""
+    },
+    {
+      "Sl.No": 130,
+      "Product Name": "6\" High Voltage (1 Pcs)",
+      "Pkt": "1 Box",
+      "NET Rate": 135,
+      "Quantity": "",
+      "Amount": ""
+    },
+    {
+      "Sl.No": 131,
+      "Product Name": "6\" Lollipop (1 Pcs)",
+      "Pkt": "1 Box",
+      "NET Rate": 135,
+      "Quantity": "",
+      "Amount": ""
+    },
+    {
+      "Sl.No": 132,
+      "Product Name": "6\" Double Decker (1 Pcs)",
+      "Pkt": "1 Box",
+      "NET Rate": 135,
+      "Quantity": "",
+      "Amount": ""
+    },
+    {
+      "Sl.No": 133,
+      "Product Name": "Water Queen (Pink Frwks) (1 Pcs)",
+      "Pkt": "1 Box",
+      "NET Rate": 150,
+      "Quantity": "",
+      "Amount": ""
+    },
+    {
+      "Sl.No": 134,
+      "Product Name": "8\" Triple Monkey (1 Pcs)",
+      "Pkt": "1 Box",
+      "NET Rate": 165,
+      "Quantity": "",
+      "Amount": ""
+    },
+    {
+      "Sl.No": 135,
+      "Product Name": "Mega Shower 6\" Fountain (1 Pcs)",
+      "Pkt": "1 Box",
+      "NET Rate": 165,
+      "Quantity": "",
+      "Amount": ""
+    },
+    {
+      "Sl.No": 136,
+      "Product Name": "Cocktails Pink (1 Pcs)",
+      "Pkt": "1 Box",
+      "NET Rate": 165,
+      "Quantity": "",
+      "Amount": ""
+    },
+    {
+      "Sl.No": 137,
+      "Product Name": "Mega Warrior \\ Blossom Fountain (1 Pcs)",
+      "Pkt": "1 Box",
+      "NET Rate": 225,
+      "Quantity": "",
+      "Amount": ""
+    },
+    {
+      "Sl.No": 138,
+      "Product Name": "Bad Boy (3 Pcs)",
+      "Pkt": "1 Box",
+      "NET Rate": 335,
+      "Quantity": "",
+      "Amount": ""
+    }
+  ],"CRAZY FOUNTAINS": [
+    {
+      "Sl.No": 139,
+      "Product Name": "Shappy \\ Hip Hop (1 Pcs)",
+      "Pkt": "1 Box",
+      "NET Rate": 50,
+      "Quantity": "",
+      "Amount": ""
+    },
+    {
+      "Sl.No": 140,
+      "Product Name": "Mini Bulls (Sri Vijai) (1 Pcs)",
+      "Pkt": "1 Box",
+      "NET Rate": 50,
+      "Quantity": "",
+      "Amount": ""
+    },
+    {
+      "Sl.No": 141,
+      "Product Name": "Photo flash",
+      "Pkt": "1 Box",
+      "NET Rate": 60,
+      "Quantity": "",
+      "Amount": ""
+    },
+    {
+      "Sl.No": 142,
+      "Product Name": "BTS Army (Double Funtion) (1 Pcs)",
+      "Pkt": "1 Box",
+      "NET Rate": 100,
+      "Quantity": "",
+      "Amount": ""
+    },
+    {
+      "Sl.No": 143,
+      "Product Name": "Little / Asrafi / Feather / Wonder Pops ( 5Pcs)",
+      "Pkt": "1 Box",
+      "NET Rate": 110,
+      "Quantity": "",
+      "Amount": ""
+    },
+    {
+      "Sl.No": 144,
+      "Product Name": "Flower Fountain (1 Pcs)",
+      "Pkt": "1 Box",
+      "NET Rate": 110,
+      "Quantity": "",
+      "Amount": ""
+    },
+    {
+      "Sl.No": 145,
+      "Product Name": "Chotta Bheem (5 Pcs)",
+      "Pkt": "1 Box",
+      "NET Rate": 120,
+      "Quantity": "",
+      "Amount": ""
+    },
+    {
+      "Sl.No": 146,
+      "Product Name": "Indigo Mix (5 Pcs)",
+      "Pkt": "1 Box",
+      "NET Rate": 120,
+      "Quantity": "",
+      "Amount": ""
+    },
+    {
+      "Sl.No": 147,
+      "Product Name": "3\" Crackling Mix (5 Pcs)",
+      "Pkt": "1 Box",
+      "NET Rate": 140,
+      "Quantity": "",
+      "Amount": ""
+    },
+    {
+      "Sl.No": 148,
+      "Product Name": "Wonder Mix (5 Pcs)",
+      "Pkt": "1 Box",
+      "NET Rate": 140,
+      "Quantity": "",
+      "Amount": ""
+    },
+    {
+      "Sl.No": 149,
+      "Product Name": "My 1st Love (5 Pcs)",
+      "Pkt": "1 Box",
+      "NET Rate": 170,
+      "Quantity": "",
+      "Amount": ""
+    },
+    {
+      "Sl.No": 150,
+      "Product Name": "Power Rangers (5 Pcs)",
+      "Pkt": "1 Box",
+      "NET Rate": 140,
+      "Quantity": "",
+      "Amount": ""
+    },
+    {
+      "Sl.No": 151,
+      "Product Name": "Tug Of War",
+      "Pkt": "1 Box",
+      "NET Rate": 150,
+      "Quantity": "",
+      "Amount": ""
+    },
+    {
+      "Sl.No": 152,
+      "Product Name": "Decon Charges (5 Pcs)",
+      "Pkt": "1 Box",
+      "NET Rate": 160,
+      "Quantity": "",
+      "Amount": ""
+    },
+    {
+      "Sl.No": 153,
+      "Product Name": "White Phoenix (5 Pcs)",
+      "Pkt": "1 Box",
+      "NET Rate": 160,
+      "Quantity": "",
+      "Amount": ""
+    },
+    {
+      "Sl.No": 154,
+      "Product Name": "Formula 1 (5 Pcs)",
+      "Pkt": "1 Box",
+      "NET Rate": 160,
+      "Quantity": "",
+      "Amount": ""
+    },
+    {
+      "Sl.No": 155,
+      "Product Name": "4\" Fountain (2 Pcs)",
+      "Pkt": "1 Box",
+      "NET Rate": 160,
+      "Quantity": "",
+      "Amount": ""
+    },
+    {
+      "Sl.No": 156,
+      "Product Name": "Scooby Doo (5 Pcs) 1 Box",
+      "Pkt": "1 Box",
+      "NET Rate": 185,
+      "Quantity": "",
+      "Amount": ""
+    },
+    {
+      "Sl.No": 157,
+      "Product Name": "Neon Light (3 Pcs) Vadivel",
+      "Pkt": "1 Box",
+      "NET Rate": 225,
+      "Quantity": "",
+      "Amount": ""
+    },
+    {
+      "Sl.No": 158,
+      "Product Name": "Moltu Paltu (5 Pcs)",
+      "Pkt": "1 Box",
+      "NET Rate": 255,
+      "Quantity": "",
+      "Amount": ""
+    },
+    {
+      "Sl.No": 159,
+      "Product Name": "Hot Show (5 Pcs)",
+      "Pkt": "1 Box",
+      "NET Rate": 255,
+      "Quantity": "",
+      "Amount": ""
+    },
+    {
+      "Sl.No": 160,
+      "Product Name": "Jungle Fountain (5 Pcs) 1 Box",
+      "Pkt": "1 Box",
+      "NET Rate": 275,
+      "Quantity": "",
+      "Amount": ""
+    },
+    {
+      "Sl.No": 161,
+      "Product Name": "Caterpillar (2 Pcs) Vanitha",
+      "Pkt": "1 Box",
+      "NET Rate": 275,
+      "Quantity": "",
+      "Amount": ""
+    },
+    {
+      "Sl.No": 162,
+      "Product Name": "Cocktail Party Tin (3 Pcs)",
+      "Pkt": "1 Box",
+      "NET Rate": 335,
+      "Quantity": "",
+      "Amount": ""
+    },
+    {
+      "Sl.No": 163,
+      "Product Name": "Festival Celebration (3 Pcs)",
+      "Pkt": "1 Box",
+      "NET Rate": 335,
+      "Quantity": "",
+      "Amount": ""
+    },
+    {
+      "Sl.No": 164,
+      "Product Name": "Mini Pot Mix (5 Pcs) Vanitha",
+      "Pkt": "1 Box",
+      "NET Rate": 335,
+      "Quantity": "",
+      "Amount": ""
+    },
+    {
+      "Sl.No": 165,
+      "Product Name": "Rio Toy",
+      "Pkt": "1 Box",
+      "NET Rate": 530,
+      "Quantity": "",
+      "Amount": ""
+    },
+    {
+      "Sl.No": 166,
+      "Product Name": "Gelly (18 Pcs) Vanitha",
+      "Pkt": "1 Box",
+      "NET Rate": 335,
+      "Quantity": "",
+      "Amount": ""
+    },
+    {
+      "Sl.No": 167,
+      "Product Name": "All Time Choices (3 Pcs) Vanitha",
+      "Pkt": "1 Box",
+      "NET Rate": 200,
+      "Quantity": "",
+      "Amount": ""
+    }
+  ],
+  "COLOUR IN THE SKY": [
+    {
+      "Sl.No": 168,
+      "Product Name": "Forces (2 Pcs)",
+      "Pkt": "1 Box",
+      "NET Rate": 85,
+      "Quantity": "",
+      "Amount": ""
+    },
+    {
+      "Sl.No": 169,
+      "Product Name": "Robo (5 Pcs)",
+      "Pkt": "1 Box",
+      "NET Rate": 135,
+      "Quantity": "",
+      "Amount": ""
+    },
+    {
+      "Sl.No": 170,
+      "Product Name": "Bytes (6 Pcs) 1 Box",
+      "Pkt": "1 Box",
+      "NET Rate": 165,
+      "Quantity": "",
+      "Amount": ""
+    },
+    {
+      "Sl.No": 171,
+      "Product Name": "Orbit (6 Pcs) 1 Box",
+      "Pkt": "1 Box",
+      "NET Rate": 165,
+      "Quantity": "",
+      "Amount": ""
+    },
+    {
+      "Sl.No": 172,
+      "Product Name": "Popcorn (6 Pcs) 1 Box",
+      "Pkt": "1 Box",
+      "NET Rate": 165,
+      "Quantity": "",
+      "Amount": ""
+    },
+    {
+      "Sl.No": 173,
+      "Product Name": "Sparkle (6 Pcs) 1 Box",
+      "Pkt": "1 Box",
+      "NET Rate": 165,
+      "Quantity": "",
+      "Amount": ""
+    },
+    {
+      "Sl.No": 174,
+      "Product Name": "Avengers (5 Pcs) 1 Box",
+      "Pkt": "1 Box",
+      "NET Rate": 225,
+      "Quantity": "",
+      "Amount": ""
+    },
+    {
+      "Sl.No": 175,
+      "Product Name": "Colour Celebration (5 Pcs) 1 Box",
+      "Pkt": "1 Box",
+      "NET Rate": 225,
+      "Quantity": "",
+      "Amount": ""
+    },
+    {
+      "Sl.No": 176,
+      "Product Name": "Millenium Crackling (10 Pcs) 1 Box",
+      "Pkt": "1 Box",
+      "NET Rate": 240,
+      "Quantity": "",
+      "Amount": ""
+    },
+    {
+      "Sl.No": 177,
+      "Product Name": "Seven Thunders (5 Pcs) 1 Box",
+      "Pkt": "1 Box",
+      "NET Rate": 165,
+      "Quantity": "",
+      "Amount": ""
+    },
+    {
+      "Sl.No": 178,
+      "Product Name": "Dup Tip (5 Pcs) 1 Box",
+      "Pkt": "1 Box",
+      "NET Rate": 135,
+      "Quantity": "",
+      "Amount": ""
+    },
+    {
+      "Sl.No": 179,
+      "Product Name": "Fountain With Shot (1 Pcs)",
+      "Pkt": "1 Box",
+      "NET Rate": 165,
+      "Quantity": "",
+      "Amount": ""
+    },
+    {
+      "Sl.No": 180,
+      "Product Name": "Merry Go Merry (3 Pcs)",
+      "Pkt": "1 Box",
+      "NET Rate": 225,
+      "Quantity": "",
+      "Amount": ""
+    },
+    {
+      "Sl.No": 181,
+      "Product Name": "Hi - Fi (5 Pcs) Multicoloured",
+      "Pkt": "1 Box",
+      "NET Rate": 165,
+      "Quantity": "",
+      "Amount": ""
+    },
+    {
+      "Sl.No": 182,
+      "Product Name": "Triple Fun (3 Pcs) Multicoloured",
+      "Pkt": "1 Box",
+      "NET Rate": 110,
+      "Quantity": "",
+      "Amount": ""
+    },
+    {
+      "Sl.No": 183,
+      "Product Name": "MIRACLE (4 Pcs) Vanitha",
+      "Pkt": "1 Box",
+      "NET Rate": 225,
+      "Quantity": "",
+      "Amount": ""
+    },
+    {
+      "Sl.No": 184,
+      "Product Name": "Long Way (10 Pcs) Vanitha",
+      "Pkt": "1 Box",
+      "NET Rate": 440,
+      "Quantity": "",
+      "Amount": ""
+    }
+  ],
+  "FLYERS": [
+    {
+      "Sl.No": 185,
+      "Product Name": "Crystal (3 Pcs) Vanitha",
+      "Pkt": "1 Box",
+      "NET Rate": 640,
+      "Quantity": "",
+      "Amount": ""
+    },
+    {
+      "Sl.No": 186,
+      "Product Name": "Helicopter (10 Pcs) 1 Box",
+      "Pkt": "1 Box",
+      "NET Rate": 80,
+      "Quantity": "",
+      "Amount": ""
+    }
+  ],
+  "FANCY COMETS": [
+    {
+      "Sl.No": 187,
+      "Product Name": "1.75\" LCU (1 Pcs)",
+      "Pkt": "1 Box",
+      "NET Rate": 110,
+      "Quantity": "",
+      "Amount": ""
+    },
+    {
+      "Sl.No": 188,
+      "Product Name": "1.25\" Fancy (3 Pcs)",
+      "Pkt": "1 Box",
+      "NET Rate": 225,
+      "Quantity": "",
+      "Amount": ""
+    },
+    {
+      "Sl.No": 189,
+      "Product Name": "2.5\" 3Step (1 Pcs)",
+      "Pkt": "1 Box",
+      "NET Rate": 225,
+      "Quantity": "",
+      "Amount": ""
+    },
+    {
+      "Sl.No": 190,
+      "Product Name": "3 Pcs Fancy Wow Star",
+      "Pkt": "1 Box",
+      "NET Rate": 275,
+      "Quantity": "",
+      "Amount": ""
+    },
+    {
+      "Sl.No": 191,
+      "Product Name": "3.5\" Niagara Falls (Girl Friend) (1 Pcs)",
+      "Pkt": "1 Box",
+      "NET Rate": 295,
+      "Quantity": "",
+      "Amount": ""
+    },
+    {
+      "Sl.No": 192,
+      "Product Name": "3.5\" Fancy Lovely / INF (1 Pcs)",
+      "Pkt": "1 Box",
+      "NET Rate": 295,
+      "Quantity": "",
+      "Amount": ""
+    },
+    {
+      "Sl.No": 193,
+      "Product Name": "3.5\" Fancy Mothers (1 Pcs)",
+      "Pkt": "1 Box",
+      "NET Rate": 295,
+      "Quantity": "",
+      "Amount": ""
+    },
+    {
+      "Sl.No": 194,
+      "Product Name": "2\" Fancy (3 Pcs) Kanishkar",
+      "Pkt": "1 Box",
+      "NET Rate": 335,
+      "Quantity": "",
+      "Amount": ""
+    },
+    {
+      "Sl.No": 195,
+      "Product Name": "3.5\" 12 Step (1 Pcs)",
+      "Pkt": "1 Box",
+      "NET Rate": 385,
+      "Quantity": "",
+      "Amount": ""
+    },
+    {
+      "Sl.No": 196,
+      "Product Name": "Shooter Heaven (10 Bullets)",
+      "Pkt": "1 Box",
+      "NET Rate": 430,
+      "Quantity": "",
+      "Amount": ""
+    },
+    {
+      "Sl.No": 197,
+      "Product Name": "3.5\" Double Ball Fancy (1 Pcs)",
+      "Pkt": "1 Box",
+      "NET Rate": 430,
+      "Quantity": "",
+      "Amount": ""
+    },
+    {
+      "Sl.No": 198,
+      "Product Name": "3.5\" Double Ball (2 Pcs) Lovely",
+      "Pkt": "1 Box",
+      "NET Rate": 740,
+      "Quantity": "",
+      "Amount": ""
+    },
+    {
+      "Sl.No": 199,
+      "Product Name": "2\" Triple Ball Fancy (2 Pcs)",
+      "Pkt": "1 Box",
+      "NET Rate": 480,
+      "Quantity": "",
+      "Amount": ""
+    },
+    {
+      "Sl.No": 200,
+      "Product Name": "Double Ball Niagara Falls (1 Pcs)",
+      "Pkt": "1 Box",
+      "NET Rate": 500,
+      "Quantity": "",
+      "Amount": ""
+    },
+    {
+      "Sl.No": 201,
+      "Product Name": "3.5\" Triple Ball Fancy (1 Pcs)",
+      "Pkt": "1 Box",
+      "NET Rate": 580,
+      "Quantity": "",
+      "Amount": ""
+    }
+  ],
+  "EXOTIC FANCY SHOOTERS": [
+    {
+      "Sl.No": 202,
+      "Product Name": "Golden Eye (3 Step Niagara Falls) 1 Pcs",
+      "Pkt": "1 Box",
+      "NET Rate": 380,
+      "Quantity": "",
+      "Amount": ""
+    },
+    {
+      "Sl.No": 203,
+      "Product Name": "7 Wonders (1 Pcs) 1 Box",
+      "Pkt": "1 Box",
+      "NET Rate": 400,
+      "Quantity": "",
+      "Amount": ""
+    },
+    {
+      "Sl.No": 204,
+      "Product Name": "Wow Pink (1 Pcs) 1 Box",
+      "Pkt": "1 Box",
+      "NET Rate": 400,
+      "Quantity": "",
+      "Amount": ""
+    },
+    {
+      "Sl.No": 205,
+      "Product Name": "Wow Blue (1 Pcs) 1 Box",
+      "Pkt": "1 Box",
+      "NET Rate": 400,
+      "Quantity": "",
+      "Amount": ""
+    },
+    {
+      "Sl.No": 206,
+      "Product Name": "Wow Purple (1 Pcs) 1 Box",
+      "Pkt": "1 Box",
+      "NET Rate": 400,
+      "Quantity": "",
+      "Amount": ""
+    },
+    {
+      "Sl.No": 207,
+      "Product Name": "Wow Orange (1 Pcs) 1 Box",
+      "Pkt": "1 Box",
+      "NET Rate": 400,
+      "Quantity": "",
+      "Amount": ""
+    },
+    {
+      "Sl.No": 208,
+      "Product Name": "Mummy Daddy (Double Ball Elite) 1 Pcs",
+      "Pkt": "1 Box",
+      "NET Rate": 480,
+      "Quantity": "",
+      "Amount": ""
+    },
+    {
+      "Sl.No": 209,
+      "Product Name": "Tom & Jerry (Double Ball Elite) 1 Pcs",
+      "Pkt": "1 Box",
+      "NET Rate": 480,
+      "Quantity": "",
+      "Amount": ""
+    },
+    {
+      "Sl.No": 210,
+      "Product Name": "Tower Series (2 Pcs) 1 Box",
+      "Pkt": "1 Box",
+      "NET Rate": 650,
+      "Quantity": "",
+      "Amount": ""
+    },
+    {
+      "Sl.No": 211,
+      "Product Name": "4\" Orange (2 Pcs) 1 Box",
+      "Pkt": "1 Box",
+      "NET Rate": 780,
+      "Quantity": "",
+      "Amount": ""
+    },
+    {
+      "Sl.No": 212,
+      "Product Name": "4\" Zoom (Pink) (2 Pcs) 1 Box",
+      "Pkt": "1 Box",
+      "NET Rate": 780,
+      "Quantity": "",
+      "Amount": ""
+    },
+    {
+      "Sl.No": 213,
+      "Product Name": "4\" Pop Up (Niagara Falls Crackling) (2 Pcs) 1 Box",
+      "Pkt": "1 Box",
+      "NET Rate": 780,
+      "Quantity": "",
+      "Amount": ""
+    }
+  ],
+  "REPEATING SHOTS": [
+    {
+      "Sl.No": 214,
+      "Product Name": "12 Shots Multicolour",
+      "Pkt": "1 Box",
+      "NET Rate": 280,
+      "Quantity": "",
+      "Amount": ""
+    },
+    {
+      "Sl.No": 215,
+      "Product Name": "30 Multicolour Shots",
+      "Pkt": "1 Box",
+      "NET Rate": 380,
+      "Quantity": "",
+      "Amount": ""
+    },
+    {
+      "Sl.No": 216,
+      "Product Name": "60 Multicolour Shots",
+      "Pkt": "1 Box",
+      "NET Rate": 740,
+      "Quantity": "",
+      "Amount": ""
+    },
+    {
+      "Sl.No": 217,
+      "Product Name": "120Multicolour Shots",
+      "Pkt": "1 Box",
+      "NET Rate": 1450,
+      "Quantity": "",
+      "Amount": ""
+    }
+  ],
+  "SPECIAL REPEATING SHOTS": [
+    {
+      "Sl.No": 218,
+      "Product Name": "30 Flash Joker",
+      "Pkt": "1 Box",
+      "NET Rate": 510,
+      "Quantity": "",
+      "Amount": ""
+    },
+    {
+      "Sl.No": 219,
+      "Product Name": "30 Crack Jack",
+      "Pkt": "1 Box",
+      "NET Rate": 570,
+      "Quantity": "",
+      "Amount": ""
+    },
+    {
+      "Sl.No": 220,
+      "Product Name": "30 Peacock Dance",
+      "Pkt": "1 Box",
+      "NET Rate": 410,
+      "Quantity": "",
+      "Amount": ""
+    },
+    {
+      "Sl.No": 221,
+      "Product Name": "60 Flash Batman",
+      "Pkt": "1 Box",
+      "NET Rate": 945,
+      "Quantity": "",
+      "Amount": ""
+    },
+    {
+      "Sl.No": 222,
+      "Product Name": "120 Flash Knights",
+      "Pkt": "1 Box",
+      "NET Rate": 1845,
+      "Quantity": "",
+      "Amount": ""
+    },
+    {
+      "Sl.No": 223,
+      "Product Name": "120 Pyro World",
+      "Pkt": "1 Box",
+      "NET Rate": 2250,
+      "Quantity": "",
+      "Amount": ""
+    },
+    {
+      "Sl.No": 224,
+      "Product Name": "Shanghai Trip",
+      "Pkt": "1 Box",
+      "NET Rate": 480,
+      "Quantity": "",
+      "Amount": ""
+    },
+    {
+      "Sl.No": 225,
+      "Product Name": "Silver Thunder 30 Shots",
+      "Pkt": "1 Box",
+      "NET Rate": 7800,
+      "Quantity": "",
+      "Amount": ""
+    },
+    {
+      "Sl.No": 226,
+      "Product Name": "Canon Salute (50 Shots)",
+      "Pkt": "1 Box",
+      "NET Rate": 780,
+      "Quantity": "",
+      "Amount": ""
+    },
+    {
+      "Sl.No": 227,
+      "Product Name": "Digital Rain (7*10)",
+      "Pkt": "1 Box",
+      "NET Rate": 1700,
+      "Quantity": "",
+      "Amount": ""
+    },
+    {
+      "Sl.No": 228,
+      "Product Name": "Jackpot (60 MC & CRACKLING) INF",
+      "Pkt": "1 Box",
+      "NET Rate": 1200,
+      "Quantity": "",
+      "Amount": ""
+    },
+    {
+      "Sl.No": 229,
+      "Product Name": "Transformers (120 Mc + Crackling)",
+      "Pkt": "1 Box",
+      "NET Rate": 2300,
+      "Quantity": "",
+      "Amount": ""
+    }
+  ],
+  "WHISTLING SHOTS": [
+    {
+      "Sl.No": 230,
+      "Product Name": "Juke Box (50 Whistles With Shot)",
+      "Pkt": "1 Box",
+      "NET Rate": 1300,
+      "Quantity": "",
+      "Amount": ""
+    },
+    {
+      "Sl.No": 231,
+      "Product Name": "Wedding Singer (50 Whistles)",
+      "Pkt": "1 Box",
+      "NET Rate": 1300,
+      "Quantity": "",
+      "Amount": ""
+    }
+  ],
+  "SETOUTS": [
+    {
+      "Sl.No": 232,
+      "Product Name": "WOW STAR 30 SETOUT (1 .75\" Shell)",
+      "Pkt": "1 Box",
+      "NET Rate": 2700,
+      "Quantity": "",
+      "Amount": ""
+    },
+    {
+      "Sl.No": 233,
+      "Product Name": "10*10 Sizzling",
+      "Pkt": "1 Box",
+      "NET Rate": 3400,
+      "Quantity": "",
+      "Amount": ""
+    },
+    {
+      "Sl.No": 234,
+      "Product Name": "10*10 Taillight",
+      "Pkt": "1 Box",
+      "NET Rate": 3600,
+      "Quantity": "",
+      "Amount": ""
+    },
+    {
+      "Sl.No": 235,
+      "Product Name": "10*10 Lights Of Thunder",
+      "Pkt": "1 Box",
+      "NET Rate": 400,
+      "Quantity": "",
+      "Amount": ""
+    }
+  ],
+  "GIFT BOX": [
+    {
+      "Sl.No": 236,
+      "Product Name": "21 Items (Mona)",
+      "Pkt": "1 Box",
+      "NET Rate": 450,
+      "Quantity": "",
+      "Amount": ""
+    },
+    {
+      "Sl.No": 237,
+      "Product Name": "30 Items (Avatar)",
+      "Pkt": "1 Box",
+      "NET Rate": 600,
+      "Quantity": "",
+      "Amount": ""
+    },
+    {
+      "Sl.No": 238,
+      "Product Name": "36 Items (Hulk)",
+      "Pkt": "1 Box",
+      "NET Rate": 750,
+      "Quantity": "",
+      "Amount": ""
+    },
+    {
+      "Sl.No": 239,
+      "Product Name": "45 Items (Paradise)",
+      "Pkt": "1 Box",
+      "NET Rate": 1200,
+      "Quantity": "",
+      "Amount": ""
+    },
+    {
+      "Sl.No": 240,
+      "Product Name": "50 Items (Wonderful)",
+      "Pkt": "1 Box",
+      "NET Rate": 1350,
+      "Quantity": "",
+      "Amount": ""
+    },
+    {
+      "Sl.No": 241,
+      "Product Name": "55 Items (Carnival)",
+      "Pkt": "1 Box",
+      "NET Rate": 1450,
+      "Quantity": "",
+      "Amount": ""
+    },
+    {
+      "Sl.No": 242,
+      "Product Name": "60 Items (Champion)",
+      "Pkt": "1 Box",
+      "NET Rate": 1700,
+      "Quantity": "",
+      "Amount": ""
+    }
+  ]
+};
 
-    // Generate HTML for each cracker card
-    function generateCrackerCards() {
+   // Function to generate HTML for each cracker category and item
+   function generateCrackerList() {
       const container = document.getElementById('cracker-list');
-      crackersData.forEach(cracker => {
-        const cardHTML = `
-          <div class="card">
-            <img src="images/${cracker.slNo}.jpg" alt="${cracker.name}" loading="lazy">
-            <div class="card-content">
-              <div class="product-name">${cracker.name}</div>
-              <div class="product-info">Pkt: ${cracker.pkt}</div>
-              <div class="product-price">₹${cracker.price}</div>
-            </div>
-          </div>
-        `;
-        container.innerHTML += cardHTML;
-      });
+
+      // Loop through each category in the crackersData
+      for (const category in crackersData) {
+        if (crackersData.hasOwnProperty(category)) {
+          
+          // Create a category title
+          const categoryTitle = document.createElement('h2');
+          categoryTitle.className = 'category-title';
+          categoryTitle.innerText = category;
+
+          // Add category title to the container
+          container.appendChild(categoryTitle);
+
+          // Create a grid container for the products
+          const productGrid = document.createElement('div');
+          productGrid.className = 'product-grid';
+
+          // Loop through each item in the category
+          crackersData[category].forEach(item => {
+            const card = document.createElement('div');
+            card.className = 'card';
+
+            // Create an image element (assuming images are named by Sl.No)
+            const img = document.createElement('img');
+            img.src = `images/${item["Sl.No"]}.jpg`;
+            img.alt = item["Product Name"];
+            img.loading = "lazy"; // Lazy load images
+
+            // Create the content div
+            const content = document.createElement('div');
+            content.className = 'card-content';
+
+            // Product Name
+            const productName = document.createElement('div');
+            productName.className = 'product-name';
+            productName.innerText = item["Product Name"];
+
+            // Packet Info
+            const productInfo = document.createElement('div');
+            productInfo.className = 'product-info';
+            productInfo.innerText = `Pkt: ${item["Pkt"]}`;
+            
+            // NET Rate / Price
+            const productPrice = document.createElement('div');
+            productPrice.className = 'product-price';
+            productPrice.innerText = `₹${item["NET Rate"]}`;
+
+            // Append everything together
+            content.appendChild(productName);
+            content.appendChild(productInfo);
+            content.appendChild(productPrice);
+            card.appendChild(img);
+            card.appendChild(content);
+            productGrid.appendChild(card);
+          });
+
+          // Add the product grid to the container
+          container.appendChild(productGrid);
+        }
+      }
     }
 
-    // Initialize the page
-    generateCrackerCards();
+    // Initialize and generate the cracker list on page load
+    window.onload = function() {
+      generateCrackerList();
+    };
   </script>
 
 </body>
