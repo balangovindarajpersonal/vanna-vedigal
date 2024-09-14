@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Crackers Price List - 2024</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      background-color: #f4f4f4;
+    }
+
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+
+    .container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .card {
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      margin: 10px;
+      width: 300px;
+      text-align: center;
+      overflow: hidden;
+      transition: transform 0.2s;
+    }
+
+    .card:hover {
+      transform: scale(1.05);
+    }
+
+    img {
+      width: 100%;
+      height: auto;
+    }
+
+    .card-content {
+      padding: 15px;
+    }
+
+    .product-name {
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    .product-info {
+      margin: 8px 0;
+      color: #555;
+    }
+
+    .product-price {
+      font-size: 20px;
+      color: #e91e63;
+      font-weight: bold;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 20px;
+      font-size: 14px;
+      color: #777;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Crackers Price List - 2024</h1>
+  <div class="container" id="cracker-list">
+    <!-- The cracker cards will be injected here by JavaScript -->
+  </div>
+
+  <footer>
+    For orders, contact: Murugan - 9566763284
+  </footer>
+
+  <script>
+    // The cracker data as JSON
+    const crackersData = [
+      {"slNo": 1, "name": "4000 Pack with 15 Multicoloured shots FREE (28 + 1 Item)", "pkt": "1 Box", "price": 4000},
+      {"slNo": 2, "name": "6000 Pack With 15 Multicoloured Shots FREE (38 +1) Item", "pkt": "1 Box", "price": 6000},
+      {"slNo": 3, "name": "10Cm Electric (10 Pcs)", "pkt": "1 Box", "price": 14},
+      {"slNo": 4, "name": "15 Cm Electric (10 Pcs)", "pkt": "1 Box", "price": 30},
+      {"slNo": 5, "name": "30 Cm Electric (5 Pcs)", "pkt": "1 Box", "price": 30},
+      {"slNo": 6, "name": "10 Cm Colour (10 Pcs)", "pkt": "1 Box", "price": 16},
+      {"slNo": 7, "name": "15 Cm Colour (10 Pcs)", "pkt": "1 Box", "price": 32},
+      {"slNo": 8, "name": "30 Cm Colour (5 Pcs)", "pkt": "1 Box", "price": 34},
+      {"slNo": 9, "name": "10 Cm Green (10 Pcs)", "pkt": "1 Box", "price": 20},
+      {"slNo": 10, "name": "15 Cm Green (10 Pcs)", "pkt": "1 Box", "price": 37},
+      {"slNo": 11, "name": "30 Cm Green (5 Pcs)", "pkt": "1 Box", "price": 37},
+      {"slNo": 12, "name": "10 Cm Red Sparkers (10 Pcs)", "pkt": "1 Box", "price": 22},
+      {"slNo": 13, "name": "30 Cm Red Sparklers (5 Pcs)", "pkt": "1 Box", "price": 40},
+      {"slNo": 14, "name": "Smoky Stick (2 Pcs)", "pkt": "1 Box", "price": 22},
+      {"slNo": 15, "name": "10Cm Mingle Mix", "pkt": "1 Box", "price": 42},
+      {"slNo": 16, "name": "Crackling Lollipop (5 Pcs)", "pkt": "1 Box", "price": 215}
+    ];
+
+    // Generate HTML for each cracker card
+    function generateCrackerCards() {
+      const container = document.getElementById('cracker-list');
+      crackersData.forEach(cracker => {
+        const cardHTML = `
+          <div class="card">
+            <img src="images/${cracker.slNo}.jpg" alt="${cracker.name}" loading="lazy">
+            <div class="card-content">
+              <div class="product-name">${cracker.name}</div>
+              <div class="product-info">Pkt: ${cracker.pkt}</div>
+              <div class="product-price">₹${cracker.price}</div>
+            </div>
+          </div>
+        `;
+        container.innerHTML += cardHTML;
+      });
+    }
+
+    // Initialize the page
+    generateCrackerCards();
+  </script>
+
+</body>
+</html>
