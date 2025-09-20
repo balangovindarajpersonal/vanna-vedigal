@@ -1617,68 +1617,95 @@
 }
    // Function to generate HTML for each cracker category and item
    function generateCrackerList() {
-      const container = document.getElementById('cracker-list');
+  const container = document.getElementById('cracker-list');
 
-      // Loop through each category in the crackersData
-      for (const category in crackersData) {
-        if (crackersData.hasOwnProperty(category)) {
-          
-          // Create a category title
-          const categoryTitle = document.createElement('h2');
-          categoryTitle.className = 'category-title';
-          categoryTitle.innerText = category;
+  // INR formatter
+  const fmtINR = n =>
+    (typeof n === "number" ? n : Number(n))
+      .toLocaleString('en-IN', { style: 'currency', currency: 'INR', maximumFractionDigits: 2 });
 
-          // Add category title to the container
-          container.appendChild(categoryTitle);
+  // Loop through each category in the crackersData
+  for (const category in crackersData) {
+    if (!crackersData.hasOwnProperty(category)) continue;
 
-          // Create a grid container for the products
-          const productGrid = document.createElement('div');
-          productGrid.className = 'product-grid';
+    // Create a category title
+    const categoryTitle = document.createElement('h2');
+    categoryTitle.className = 'category-title';
+    categoryTitle.innerText = category;
 
-          // Loop through each item in the category
-          crackersData[category].forEach(item => {
-            const card = document.createElement('div');
-            card.className = 'card';
+    // Add category title to the container
+    container.appendChild(categoryTitle);
 
-            // Create an image element (assuming images are named by Sl.No)
-            const img = document.createElement('img');
-            img.src = `images/${item["Sl.No"]}.jpeg`;
-            img.alt = item["Product Name"];
-            img.loading = "lazy"; // Lazy load images
+    // Create a grid container for the products
+    const productGrid = document.createElement('div');
+    productGrid.className = 'product-grid';
 
-            // Create the content div
-            const content = document.createElement('div');
-            content.className = 'card-content';
+    // Loop through each item in the category
+    crackersData[category].forEach(item => {
+      const card = document.createElement('div');
+      card.className = 'card';
 
-            // Product Name
-            const productName = document.createElement('div');
-            productName.className = 'product-name';
-            productName.innerText = item["Product Name"];
+      // Image (assuming images are named by Sl.No)
+      const img = document.createElement('img');
+      img.src = `images/${item["Sl.No"]}.jpeg`;
+      img.alt = item["Product Name"];
+      img.loading = "lazy"; // Lazy load images
 
-            // Packet Info
-            const productInfo = document.createElement('div');
-            productInfo.className = 'product-info';
-            productInfo.innerText = `Pkt: ${item["Pkt"]}`;
-            
-            // NET Rate / Price
-            const productPrice = document.createElement('div');
-            productPrice.className = 'product-price';
-            productPrice.innerText = `₹${item["NET Rate"]}`;
+      // Content
+      const content = document.createElement('div');
+      content.className = 'card-content';
 
-            // Append everything together
-            content.appendChild(productName);
-            content.appendChild(productInfo);
-            content.appendChild(productPrice);
-            card.appendChild(img);
-            card.appendChild(content);
-            productGrid.appendChild(card);
-          });
+      // Product Name
+      const productName = document.createElement('div');
+      productName.className = 'product-name';
+      productName.innerText = item["Product Name"];
 
-          // Add the product grid to the container
-          container.appendChild(productGrid);
-        }
-      }
-    }
+      // Packet Info
+      const productInfo = document.createElement('div');
+      productInfo.className = 'product-info';
+      productInfo.innerText = `Pkt: ${item["Pkt"] || ""}`;
+
+      // --- PRICE BLOCK (original + discounted) ---
+      const priceWrap = document.createElement('div');
+      priceWrap.className = 'price-wrap';
+
+      // Original price (NET Rate)
+      const original = document.createElement('span');
+      original.className = 'price-original';
+      original.innerText = fmtINR(item["NET Rate"]);
+
+      // Discounted price (Use field if present; else compute 20% of NET Rate)
+      const discounted = document.createElement('span');
+      discounted.className = 'price-discounted';
+      const d = item["Our Price (80% Discount)"];
+      const ourPrice = (d !== undefined && d !== null && d !== "")
+        ? Number(d)
+        : Number(item["NET Rate"]) * 0.20;
+      discounted.innerText = fmtINR(ourPrice);
+
+      // Discount tag
+      const tag = document.createElement('span');
+      tag.className = 'price-tag';
+      tag.innerText = '80% OFF';
+
+      priceWrap.appendChild(original);
+      priceWrap.appendChild(discounted);
+      priceWrap.appendChild(tag);
+      // --- END PRICE BLOCK ---
+
+      // Append everything together
+      content.appendChild(productName);
+      content.appendChild(productInfo);
+      content.appendChild(priceWrap);
+      card.appendChild(img);
+      card.appendChild(content);
+      productGrid.appendChild(card);
+    });
+
+    // Add the product grid to the container
+    container.appendChild(productGrid);
+  }
+}
 
     // Initialize and generate the cracker list on page load
     window.onload = function() {
